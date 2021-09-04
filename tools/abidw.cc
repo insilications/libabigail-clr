@@ -13,6 +13,8 @@
 
 #include "config.h"
 #include <unistd.h>
+#include <signal.h>
+#include <atomic>
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
@@ -84,6 +86,7 @@ struct options
   vector<string>	kabi_whitelist_paths;
   suppressions_type	kabi_whitelist_supprs;
   bool			display_version;
+  int			max_run_time;
   bool			check_alt_debug_info_path;
   bool			show_base_name_alt_debug_info_path;
   bool			write_architecture;
@@ -114,6 +117,7 @@ struct options
 
   options()
     : display_version(),
+      max_run_time(-1),
       check_alt_debug_info_path(),
       show_base_name_alt_debug_info_path(),
       write_architecture(true),
@@ -150,6 +154,17 @@ struct options
     prepared_di_root_paths.clear();
   }
 };
+
+// file to be deleted in the signal handler (if any)
+static std::atomic<const std::string *> output_file = { ATOMIC_VAR_INIT(nullptr) };
+static void
+sigalrm_handler(int)
+{
+  const std::string *f = output_file.exchange(nullptr);
+  if (f)
+    unlink(f->c_str());
+  _exit(124);
+}
 
 static void
 display_usage(const string& prog_name, ostream& out)
@@ -287,6 +302,20 @@ parse_command_line(int argc, char* argv[], options& opts)
 	  if (j >= argc)
 	    return false;
 	  opts.vmlinux = argv[j];
+	  ++i;
+	}
+      else if (!strcmp(argv[i], "--clr-max-runtime"))
+	{
+	  int j = i + 1;
+	  if (j >= argc)
+	    return false;
+	  char *endptr;
+	  opts.max_run_time = strtol(argv[j], &endptr, 10);
+	  if (!endptr || *endptr != '\0')
+	    {
+	      opts.wrong_option = argv[j];
+	      return false;
+	    }
 	  ++i;
 	}
       else if (!strcmp(argv[i], "--noout"))
@@ -492,6 +521,28 @@ load_corpus_and_write_abixml(char* argv[],
 {
   int exit_code = 0;
   timer t;
+  struct max_runtime_handler {
+    bool armed;
+    max_runtime_handler(int time) : armed(false)
+    {
+      // install a signal handler for SIGALRM
+      if (time < 0)
+	return;
+      signal(SIGALRM, sigalrm_handler);
+      alarm(time);
+      armed = true;
+    }
+    ~max_runtime_handler()
+    {
+      // disarm SIGALRM
+      if (!armed)
+	return;
+      output_file.store(nullptr);
+      alarm(0);
+      signal(SIGALRM, SIG_DFL);
+    }
+  };
+  max_runtime_handler h(opts.max_run_time);
 
 #ifdef WITH_DEBUG_SELF_COMPARISON
   if (opts.debug_abidiff)
@@ -641,12 +692,14 @@ load_corpus_and_write_abixml(char* argv[],
 
       if (!opts.out_file_path.empty())
 	{
+	  output_file.store(&opts.out_file_path);
 	  ofstream of(opts.out_file_path.c_str(), std::ios_base::trunc);
 	  if (!of.is_open())
 	    {
 	      emit_prefix(argv[0], cerr)
 		<< "could not open output file '"
 		<< opts.out_file_path << "'\n";
+	      output_file.store(nullptr);
 	      return 1;
 	    }
 	  set_ostream(*write_ctxt, of);
@@ -656,6 +709,7 @@ load_corpus_and_write_abixml(char* argv[],
 	  if (opts.do_log)
 	    emit_prefix(argv[0], cerr)
 	      << "emitted abixml output in: " << t << "\n";
+	  output_file.store(nullptr);
 	  of.close();
 	  return 0;
 	}
