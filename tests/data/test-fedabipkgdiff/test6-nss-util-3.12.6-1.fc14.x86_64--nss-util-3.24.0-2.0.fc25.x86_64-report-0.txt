@@ -1,50 +1,118 @@
 Comparing the ABI of binaries between nss-util-3.12.6-1.fc14.x86_64.rpm and nss-util-3.24.0-2.0.fc25.x86_64.rpm:
 
 ================ changes of 'libnssutil3.so'===============
-  Functions changes summary: 0 Removed, 0 Changed, 0 Added function
-  Variables changes summary: 0 Removed, 0 Changed, 0 Added variable
-  Function symbols changes summary: 0 Removed, 37 Added function symbols not referenced by debug info
-  Variable symbols changes summary: 0 Removed, 0 Added variable symbol not referenced by debug info
+  Functions changes summary: 0 Removed, 2 Changed (20 filtered out), 37 Added functions
+  Variables changes summary: 0 Removed, 2 Changed, 0 Added variables
 
-  37 Added function symbols not referenced by debug info:
+  37 Added functions:
 
-    [A] NSSUTIL_ArgDecodeNumber@@NSSUTIL_3.14
-    [A] NSSUTIL_ArgFetchValue@@NSSUTIL_3.14
-    [A] NSSUTIL_ArgGetLabel@@NSSUTIL_3.14
-    [A] NSSUTIL_ArgGetParamValue@@NSSUTIL_3.14
-    [A] NSSUTIL_ArgHasFlag@@NSSUTIL_3.14
-    [A] NSSUTIL_ArgIsBlank@@NSSUTIL_3.14
-    [A] NSSUTIL_ArgParseCipherFlags@@NSSUTIL_3.14
-    [A] NSSUTIL_ArgParseModuleSpec@@NSSUTIL_3.14
-    [A] NSSUTIL_ArgParseModuleSpecEx@@NSSUTIL_3.21
-    [A] NSSUTIL_ArgParseSlotFlags@@NSSUTIL_3.14
-    [A] NSSUTIL_ArgParseSlotInfo@@NSSUTIL_3.14
-    [A] NSSUTIL_ArgReadLong@@NSSUTIL_3.14
-    [A] NSSUTIL_ArgSkipParameter@@NSSUTIL_3.14
-    [A] NSSUTIL_ArgStrip@@NSSUTIL_3.14
-    [A] NSSUTIL_DoModuleDBFunction@@NSSUTIL_3.14
-    [A] NSSUTIL_DoubleEscape@@NSSUTIL_3.14
-    [A] NSSUTIL_DoubleEscapeSize@@NSSUTIL_3.14
-    [A] NSSUTIL_Escape@@NSSUTIL_3.14
-    [A] NSSUTIL_EscapeSize@@NSSUTIL_3.14
-    [A] NSSUTIL_GetVersion@@NSSUTIL_3.13
-    [A] NSSUTIL_MkModuleSpec@@NSSUTIL_3.14
-    [A] NSSUTIL_MkNSSString@@NSSUTIL_3.14
-    [A] NSSUTIL_MkSlotString@@NSSUTIL_3.14
-    [A] NSSUTIL_Quote@@NSSUTIL_3.14
-    [A] NSSUTIL_QuoteSize@@NSSUTIL_3.14
-    [A] NSS_InitializePRErrorTable@@NSSUTIL_3.13
-    [A] PORT_DestroyCheapArena@@NSSUTIL_3.24
-    [A] PORT_InitCheapArena@@NSSUTIL_3.24
-    [A] PORT_RegExpSearch@@NSSUTIL_3.12.7
-    [A] SECITEM_AllocArray@@NSSUTIL_3.15
-    [A] SECITEM_DupArray@@NSSUTIL_3.15
-    [A] SECITEM_FreeArray@@NSSUTIL_3.15
-    [A] SECITEM_ReallocItemV2@@NSSUTIL_3.15
-    [A] SECITEM_ZfreeArray@@NSSUTIL_3.15
-    [A] _NSSUTIL_EvaluateConfigDir@@NSSUTIL_3.14
-    [A] _NSSUTIL_GetSecmodName@@NSSUTIL_3.14
-    [A] _SGN_VerifyPKCS1DigestInfo@@NSSUTIL_3.17.1
+    [A] 'function long int NSSUTIL_ArgDecodeNumber(const char*)'    {NSSUTIL_ArgDecodeNumber@@NSSUTIL_3.14}
+    [A] 'function char* NSSUTIL_ArgFetchValue(const char*, int*)'    {NSSUTIL_ArgFetchValue@@NSSUTIL_3.14}
+    [A] 'function char* NSSUTIL_ArgGetLabel(const char*, int*)'    {NSSUTIL_ArgGetLabel@@NSSUTIL_3.14}
+    [A] 'function char* NSSUTIL_ArgGetParamValue(const char*, const char*)'    {NSSUTIL_ArgGetParamValue@@NSSUTIL_3.14}
+    [A] 'function PRBool NSSUTIL_ArgHasFlag(const char*, const char*, const char*)'    {NSSUTIL_ArgHasFlag@@NSSUTIL_3.14}
+    [A] 'function PRBool NSSUTIL_ArgIsBlank(char)'    {NSSUTIL_ArgIsBlank@@NSSUTIL_3.14}
+    [A] 'function void NSSUTIL_ArgParseCipherFlags(unsigned long int*, const char*)'    {NSSUTIL_ArgParseCipherFlags@@NSSUTIL_3.14}
+    [A] 'function SECStatus NSSUTIL_ArgParseModuleSpec(const char*, char**, char**, char**, char**)'    {NSSUTIL_ArgParseModuleSpec@@NSSUTIL_3.14}
+    [A] 'function SECStatus NSSUTIL_ArgParseModuleSpecEx(const char*, char**, char**, char**, char**, char**)'    {NSSUTIL_ArgParseModuleSpecEx@@NSSUTIL_3.21}
+    [A] 'function unsigned long int NSSUTIL_ArgParseSlotFlags(const char*, const char*)'    {NSSUTIL_ArgParseSlotFlags@@NSSUTIL_3.14}
+    [A] 'function NSSUTILPreSlotInfoStr* NSSUTIL_ArgParseSlotInfo(PLArenaPool*, const char*, int*)'    {NSSUTIL_ArgParseSlotInfo@@NSSUTIL_3.14}
+    [A] 'function long int NSSUTIL_ArgReadLong(const char*, const char*, long int, PRBool*)'    {NSSUTIL_ArgReadLong@@NSSUTIL_3.14}
+    [A] 'function const char* NSSUTIL_ArgSkipParameter(const char*)'    {NSSUTIL_ArgSkipParameter@@NSSUTIL_3.14}
+    [A] 'function const char* NSSUTIL_ArgStrip(const char*)'    {NSSUTIL_ArgStrip@@NSSUTIL_3.14}
+    [A] 'function char** NSSUTIL_DoModuleDBFunction(unsigned long int, char*, void*)'    {NSSUTIL_DoModuleDBFunction@@NSSUTIL_3.14}
+    [A] 'function char* NSSUTIL_DoubleEscape(const char*, char, char)'    {NSSUTIL_DoubleEscape@@NSSUTIL_3.14}
+    [A] 'function int NSSUTIL_DoubleEscapeSize(const char*, char, char)'    {NSSUTIL_DoubleEscapeSize@@NSSUTIL_3.14}
+    [A] 'function char* NSSUTIL_Escape(const char*, char)'    {NSSUTIL_Escape@@NSSUTIL_3.14}
+    [A] 'function int NSSUTIL_EscapeSize(const char*, char)'    {NSSUTIL_EscapeSize@@NSSUTIL_3.14}
+    [A] 'function const char* NSSUTIL_GetVersion()'    {NSSUTIL_GetVersion@@NSSUTIL_3.13}
+    [A] 'function char* NSSUTIL_MkModuleSpec(char*, char*, char*, char*)'    {NSSUTIL_MkModuleSpec@@NSSUTIL_3.14}
+    [A] 'function char* NSSUTIL_MkNSSString(char**, int, PRBool, PRBool, PRBool, PRBool, PRBool, unsigned long int, unsigned long int, unsigned long int, unsigned long int)'    {NSSUTIL_MkNSSString@@NSSUTIL_3.14}
+    [A] 'function char* NSSUTIL_MkSlotString(unsigned long int, unsigned long int, unsigned long int, unsigned char, PRBool, PRBool)'    {NSSUTIL_MkSlotString@@NSSUTIL_3.14}
+    [A] 'function char* NSSUTIL_Quote(const char*, char)'    {NSSUTIL_Quote@@NSSUTIL_3.14}
+    [A] 'function int NSSUTIL_QuoteSize(const char*, char)'    {NSSUTIL_QuoteSize@@NSSUTIL_3.14}
+    [A] 'function SECStatus NSS_InitializePRErrorTable()'    {NSS_InitializePRErrorTable@@NSSUTIL_3.13}
+    [A] 'function void PORT_DestroyCheapArena(PORTCheapArenaPool*)'    {PORT_DestroyCheapArena@@NSSUTIL_3.24}
+    [A] 'function void PORT_InitCheapArena(PORTCheapArenaPool*, unsigned long int)'    {PORT_InitCheapArena@@NSSUTIL_3.24}
+    [A] 'function int PORT_RegExpSearch(const char*, const char*)'    {PORT_RegExpSearch@@NSSUTIL_3.12.7}
+    [A] 'function SECItemArray* SECITEM_AllocArray(PLArenaPool*, SECItemArray*, unsigned int)'    {SECITEM_AllocArray@@NSSUTIL_3.15}
+    [A] 'function SECItemArray* SECITEM_DupArray(PLArenaPool*, const SECItemArray*)'    {SECITEM_DupArray@@NSSUTIL_3.15}
+    [A] 'function void SECITEM_FreeArray(SECItemArray*, PRBool)'    {SECITEM_FreeArray@@NSSUTIL_3.15}
+    [A] 'function SECStatus SECITEM_ReallocItemV2(PLArenaPool*, SECItem*, unsigned int)'    {SECITEM_ReallocItemV2@@NSSUTIL_3.15}
+    [A] 'function void SECITEM_ZfreeArray(SECItemArray*, PRBool)'    {SECITEM_ZfreeArray@@NSSUTIL_3.15}
+    [A] 'function const char* _NSSUTIL_EvaluateConfigDir(const char*, NSSDBType*, char**)'    {_NSSUTIL_EvaluateConfigDir@@NSSUTIL_3.14}
+    [A] 'function char* _NSSUTIL_GetSecmodName(const char*, NSSDBType*, char**, char**, PRBool*)'    {_NSSUTIL_GetSecmodName@@NSSUTIL_3.14}
+    [A] 'function SECStatus _SGN_VerifyPKCS1DigestInfo(SECOidTag, const SECItem*, const SECItem*, PRBool)'    {_SGN_VerifyPKCS1DigestInfo@@NSSUTIL_3.17.1}
+
+  2 functions with some indirect sub-type change:
+
+    [C] 'function SECStatus NSS_GetAlgorithmPolicy(SECOidTag, PRUint32*)' at secoid.c:2161:1 has some indirect sub-type changes:
+      parameter 1 of type 'typedef SECOidTag' has sub-type changes:
+        underlying type 'enum __anonymous_enum__' at secoidt.h:69:1 changed:
+          type size hasn't changed
+          44 enumerator insertions:
+            '__anonymous_enum__::SEC_OID_PKCS1_RSA_OAEP_ENCRYPTION' value '304'
+            '__anonymous_enum__::SEC_OID_PKCS1_MGF1' value '305'
+            '__anonymous_enum__::SEC_OID_PKCS1_PSPECIFIED' value '306'
+            '__anonymous_enum__::SEC_OID_PKCS1_RSA_PSS_SIGNATURE' value '307'
+            '__anonymous_enum__::SEC_OID_PKCS1_SHA224_WITH_RSA_ENCRYPTION' value '308'
+            '__anonymous_enum__::SEC_OID_SHA224' value '309'
+            '__anonymous_enum__::SEC_OID_EV_INCORPORATION_LOCALITY' value '310'
+            '__anonymous_enum__::SEC_OID_EV_INCORPORATION_STATE' value '311'
+            '__anonymous_enum__::SEC_OID_EV_INCORPORATION_COUNTRY' value '312'
+            '__anonymous_enum__::SEC_OID_BUSINESS_CATEGORY' value '313'
+            '__anonymous_enum__::SEC_OID_NIST_DSA_SIGNATURE_WITH_SHA224_DIGEST' value '314'
+            '__anonymous_enum__::SEC_OID_NIST_DSA_SIGNATURE_WITH_SHA256_DIGEST' value '315'
+            '__anonymous_enum__::SEC_OID_MS_EXT_KEY_USAGE_CTL_SIGNING' value '316'
+            '__anonymous_enum__::SEC_OID_AVA_NAME' value '317'
+            '__anonymous_enum__::SEC_OID_AES_128_GCM' value '318'
+            '__anonymous_enum__::SEC_OID_AES_192_GCM' value '319'
+            '__anonymous_enum__::SEC_OID_AES_256_GCM' value '320'
+            '__anonymous_enum__::SEC_OID_IDEA_CBC' value '321'
+            '__anonymous_enum__::SEC_OID_RC2_40_CBC' value '322'
+            '__anonymous_enum__::SEC_OID_DES_40_CBC' value '323'
+            '__anonymous_enum__::SEC_OID_RC4_40' value '324'
+            '__anonymous_enum__::SEC_OID_RC4_56' value '325'
+            '__anonymous_enum__::SEC_OID_NULL_CIPHER' value '326'
+            '__anonymous_enum__::SEC_OID_HMAC_MD5' value '327'
+            '__anonymous_enum__::SEC_OID_TLS_RSA' value '328'
+            '__anonymous_enum__::SEC_OID_TLS_DHE_RSA' value '329'
+            '__anonymous_enum__::SEC_OID_TLS_DHE_DSS' value '330'
+            '__anonymous_enum__::SEC_OID_TLS_DH_RSA' value '331'
+            '__anonymous_enum__::SEC_OID_TLS_DH_DSS' value '332'
+            '__anonymous_enum__::SEC_OID_TLS_DH_ANON' value '333'
+            '__anonymous_enum__::SEC_OID_TLS_ECDHE_ECDSA' value '334'
+            '__anonymous_enum__::SEC_OID_TLS_ECDHE_RSA' value '335'
+            '__anonymous_enum__::SEC_OID_TLS_ECDH_ECDSA' value '336'
+            '__anonymous_enum__::SEC_OID_TLS_ECDH_RSA' value '337'
+            '__anonymous_enum__::SEC_OID_TLS_ECDH_ANON' value '338'
+            '__anonymous_enum__::SEC_OID_TLS_RSA_EXPORT' value '339'
+            '__anonymous_enum__::SEC_OID_TLS_DHE_RSA_EXPORT' value '340'
+            '__anonymous_enum__::SEC_OID_TLS_DHE_DSS_EXPORT' value '341'
+            '__anonymous_enum__::SEC_OID_TLS_DH_RSA_EXPORT' value '342'
+            '__anonymous_enum__::SEC_OID_TLS_DH_DSS_EXPORT' value '343'
+            '__anonymous_enum__::SEC_OID_TLS_DH_ANON_EXPORT' value '344'
+            '__anonymous_enum__::SEC_OID_APPLY_SSL_POLICY' value '345'
+            '__anonymous_enum__::SEC_OID_CHACHA20_POLY1305' value '346'
+            '__anonymous_enum__::SEC_OID_TLS_ECDHE_PSK' value '347'
+          1 enumerator change:
+            '__anonymous_enum__::SEC_OID_TOTAL' from value '304' to '348' at secoidt.h:34:1
+
+    [C] 'function PRLibrary* PORT_LoadLibraryFromOrigin(const char*, PRFuncPtr, const char*)' at secload.c:130:1 has some indirect sub-type changes:
+      parameter 2 of type 'typedef PRFuncPtr' changed:
+        underlying type 'void (variadic parameter type)*' changed:
+          in pointed to type 'function type void (variadic parameter type)':
+            parameter 1 of type '...' was removed
+
+  2 Changed variables:
+
+    [C] 'const SEC_ASN1Template SECOID_AlgorithmIDTemplate_Util[4]' was changed to 'const SEC_ASN1Template SECOID_AlgorithmIDTemplate_Util[]' at secoid.h:22:1:
+      type of variable changed:
+        type name changed from 'const SEC_ASN1Template[4]' to 'const SEC_ASN1Template[]'
+        array type size changed from 1024 to infinity
+        array type subrange 1 changed length from 4 to infinity
+
+    [C] 'const SEC_ASN1Template sgn_DigestInfoTemplate_Util[4]' was changed to 'const SEC_ASN1Template sgn_DigestInfoTemplate_Util[]' at secdig.h:21:1:
 
 ================ end of changes of 'libnssutil3.so'===============
 
